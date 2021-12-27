@@ -31,6 +31,7 @@ select.js 中有预设值的 style 样式，设置以下样式一般建议加上
 
 ## 使用
 ```javascript
+// demo.html
 let total = [
   { name: '111' },
   { name: '222' },
