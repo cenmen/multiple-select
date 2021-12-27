@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #search {
+      width: 200px;
+      border: 1px solid black;
+      position: relative;
+    }
+
+    .content {
+      position: absolute;
+      border: 1px solid black;
+      width: 100%;
+      box-sizing: border-box;
+      background: #FFFFFF;
+      overflow-x: auto;
+      height: 100px;
+    }
+
+    .chioce {
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .chioce:hover {
+      background: #F5F5F5;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="search"></div>
+    <button onclick="setDisabled()">disabled</button>
+    <button onclick="data()">getData</button>
+  </div>
+  <script src="./select.js"></script>
+  <script>
+    let total = [
+      { name: '111' },
+      { name: '222' },
+      { name: '333' },
+      { name: '444' },
+      { name: '555' },
+      { name: '666' },
+      { name: '777' },
+      { name: '888' },
+      { name: '999' },
+    ]
+    const search = new Search({
+      id: 'search',
+      list: total,
+      multiple: true,
+      valueKey: 'name',
+      multipleLimit: 5,
+      contentClass: ['content'],
+      chioceItemClass: ['chioce'],
+      onInput: onInput,
+      onChange: onChange,
+    })
+    function onInput(val) {
+      search.list = total.filter(item => item.includes(val))
+    }
+    function onChange(item) {
+      console.log('==> onChange', item);
+    }
+
+    function setDisabled() {
+      search.disabled = !search.disabled
+    }
+
+    function data() {
+      console.log(search.getData())
+    }
+  </script>
+</body>
+</html>
